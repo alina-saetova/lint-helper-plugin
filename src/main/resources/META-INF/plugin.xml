@@ -1,0 +1,51 @@
+<idea-plugin>
+    <id>ru.itis.saetova.lint-helper</id>
+    <name>lint-helper</name>
+    <vendor email="alinasaetowa@gmail.com">alina saetova</vendor>
+
+    <description>Super lint lint lint lint 12345678909123123123</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.gradle</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>org.intellij.groovy</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="ru.itis.saetova.service.LoggerService"/>
+        <projectService serviceImplementation="ru.itis.saetova.service.GeneratorService"/>
+        <projectService serviceImplementation="ru.itis.saetova.service.LintModuleCreatingService"/>
+        <projectService serviceImplementation="ru.itis.saetova.service.RuleCreatingService"/>
+        <projectService serviceImplementation="ru.itis.saetova.service.SearchInProjectService"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij.modules.androidstudio">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <group id="ru.itis.saetova.action.LintActions" text="Lint Helper" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="first" />
+
+            <action
+                    id="ru.itis.saetova.action.CreateLintModuleAction"
+                    class="ru.itis.saetova.action.CreateLintModuleAction"
+                    text="Create Lint Module"/>
+            <action
+                    id="ru.itis.saetova.action.CreateRuleTemplateAction"
+                    class="ru.itis.saetova.action.CreateRuleTemplateAction"
+                    text="Create Lint Rule Template"/>
+
+            <action
+                    id="ru.itis.saetova.action.CreatePreparedRuleAction"
+                    class="ru.itis.saetova.action.CreatePreparedRuleAction"
+                    text="Create Prepared Rule"/>
+
+            <action
+                    id="ru.itis.saetova.action.CreateRuleWithParamsAction"
+                    class="ru.itis.saetova.action.CreateRuleWithParamsAction"
+                    text="Create Rule With Parameters"/>
+        </group>
+    </actions>
+</idea-plugin>
